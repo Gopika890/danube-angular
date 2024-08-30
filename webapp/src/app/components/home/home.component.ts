@@ -6,11 +6,12 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatButtonModule,ProductCardComponent,CarouselModule,RouterLink],
+  imports: [MatButtonModule,ProductCardComponent,CarouselModule,RouterLink, HttpClientModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -6,11 +6,12 @@ import { AuthService } from '../../services/auth.service';
 import { CustomerService } from '../../services/customer.service';
 import { FormsModule } from '@angular/forms';
 import{MatIconModule} from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink,FormsModule,MatIconModule],
+  imports: [RouterLink,FormsModule,MatIconModule,HttpClientModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
