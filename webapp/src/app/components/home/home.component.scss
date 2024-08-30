@@ -1,0 +1,5 @@
+.carousel-image {
+  width: 100%; /* Set width to 100% to occupy full width of the container */
+  height: 300px; /* Set a fixed height for all images */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+}

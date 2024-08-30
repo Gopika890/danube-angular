@@ -1,0 +1,41 @@
+<div class="px-20">
+  <div class="shadow">
+    <owl-carousel-o [options]="customOptions">
+      @for (item of bannerImages; track $index) {
+        <ng-template carouselSlide>
+          <!-- Container for image and text, with flex column for alignment -->
+          <div class="relative flex flex-col items-center justify-center">
+            <!-- Image container with fixed size and object-fit property to maintain aspect ratio -->
+            <div class="w-full h-64 flex items-center justify-center overflow-hidden" [routerLink]="'product/' +item._id">
+              <img [src]="item.images[0]" alt="images" class="w-full h-full object-cover"/>
+            </div>
+            <!-- Text name aligned and spaced consistently -->
+            <span class="mt-2 text-center font-semibold">{{item.name}}</span>
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+
+  <div class="m-4">
+    <h4 class="text-2xl font-bold">Featured Products:</h4><br />
+    <div class="flex justify-between gap-2">
+      @for (product of featuredProducts; track $index) {
+        <div class="w-3/12 shadow">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="m-4">
+    <h4 class="text-2xl font-bold ">New Products:</h4><br />
+    <div class="flex justify-between gap-2">
+      @for (product of newProducts; track $index) {
+        <div class="w-3/12 shadow">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      }
+    </div>
+  </div>
+</div>

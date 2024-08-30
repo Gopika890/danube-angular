@@ -1,0 +1,47 @@
+<header class="header">
+  <!-- Top Line: Logo, Search Bar, Profile Link -->
+  <div class="top-line" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="logo cursor-pointer" routerLink="/" style="flex: 1;">
+      <span>DANUBE</span>
+    </div>
+
+    <div class="search-bar" style="flex: 2; display: flex; align-items: center;">
+      <input
+        type="text"
+        placeholder="Search for products..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch($event)"
+        style="flex: 1; padding: 5px;"
+      />
+      <button type="submit" style="margin-left: 10px;"><i class="fas fa-search"></i> Search</button>
+    </div>
+
+    <div class="profile" style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
+      @if(authService.isAdmin) {
+        <a routerLink="/admin" style="margin-right: 15px;">{{ authService.userName }}</a>
+      } @else {
+        <a routerLink="/profile" style="margin-right: 15px;">{{ authService.userName }}</a>
+      }
+      @if(authService.isLoggedIn) {
+        <a routerLink="/cart" style="margin-right: 15px;">
+          <mat-icon class="text-red-600 cursor-pointer">shopping_cart</mat-icon>
+        </a>
+        <a (click)="logout()" class="cursor-pointer" style="margin-right: 15px;">Logout</a>
+      } @else {
+        <a routerLink="/login" class="cursor-pointer" style="margin-right: 15px;">Log In</a>
+        <a routerLink="/register" class="cursor-pointer" style="margin-right: 0;">Register</a>
+      }
+    </div>
+  </div>
+
+  <!-- Bottom Line: Category Menu -->
+  @if(authService.isLoggedIn) {
+    <nav class="category-menu" style="margin-top: 10px;">
+      <ul style="display: flex; gap: 15px;">
+        @for(category of categoryList; track $index) {
+          <li (click)="searchCategory(category._id!)" class="cursor-pointer"><a>{{ category.name }}</a></li>
+        }
+      </ul>
+    </nav>
+  }
+</header>

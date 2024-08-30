@@ -1,0 +1,65 @@
+<div
+  class="border-r-gray-500 w-full shadow-lg"
+  [routerLink]="'/product/' + product._id"
+  style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; margin-bottom: 20px; display: flex; flex-direction: column; height: 100%;"
+  onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 4px 20px rgba(0, 0, 0, 0.1)';"
+  onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 2px 8px rgba(0, 0, 0, 0.1)';"
+>
+  <img
+    [src]="product.images[0]"
+    alt="Product Image"
+    style="width: 100%; height: 200px; object-fit: cover;"
+  />
+  <div
+    class="p-4"
+    style="padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;"
+  >
+    <div>
+      <h5
+        class="mb-2"
+        style="margin-bottom: 10px; font-size: 18px; font-weight: bold; color: #333;"
+      >
+        {{ product.name }}
+      </h5>
+      <p style="margin-bottom: 15px; color: #777; font-size: 14px;">
+        {{ product.shortDescription }}
+      </p>
+    </div>
+
+    <!-- New Price Block -->
+    <div
+      class="flex gap-8 items-baseline"
+      style="display: flex; gap: 10px; align-items: baseline; margin-bottom: 15px;"
+    >
+      <p
+        class="text-xl text-gray-600 font-semibold"
+        style="font-size: 16px; text-decoration: line-through; color: #777; margin: 0;"
+      >
+        {{ product.price }}₹
+      </p>
+      <span
+        class="!text-xl text-orange-500"
+        style="font-size: 16px; color: #ff5722; font-weight: bold; margin: 0;"
+      >
+        {{ product.discount }}% OFF
+      </span>
+      <span
+        class="!text-2xl text-green-500 font-bold"
+        style="font-size: 16px; color: #28a745; font-weight: bold; margin: 0;"
+      >
+        ₹{{ sellingPrice }}
+      </span>
+    </div>
+
+    <!-- Add to Cart Section -->
+    <div
+      class="flex justify-between items-center"
+      style="display: flex; justify-content: space-between; align-items: center; margin-left: auto; padding-top: 10px;"
+    >
+      <button mat-fab color="warn" (click)="addToCart(product); $event.stopPropagation();">
+        <mat-icon *ngIf="isProductInCart(product._id!)">remove_shopping_cart</mat-icon>
+        <mat-icon *ngIf="!isProductInCart(product._id!)">add_shopping_cart</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
